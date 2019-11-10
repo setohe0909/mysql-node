@@ -7,25 +7,25 @@ import Joi from 'joi';
  * @return {null|object}
  */
 function validate(schema) {
-    return function (req, res, next) {
-        let toValidate = {};
-        if (!schema) {
-            return next();
-        }
-        ['params', 'body', 'query'].forEach(function (key) {
-            if (schema[key]) {
-                toValidate[key] = req[key];
-            }
-        });
+  return function(req, res, next) {
+    let toValidate = {};
+    if (!schema) {
+      return next();
+    }
+    ['params', 'body', 'query'].forEach(function(key) {
+      if (schema[key]) {
+        toValidate[key] = req[key];
+      }
+    });
 
-        return Joi.validate(toValidate, schema, {abortEarly: false}, err => {
-            if (err) {
-                return next(err);
-            }
+    return Joi.validate(toValidate, schema, { abortEarly: false }, (err) => {
+      if (err) {
+        return next(err);
+      }
 
-            return next();
-        });
-    };
+      return next();
+    });
+  };
 }
 
 export default validate;

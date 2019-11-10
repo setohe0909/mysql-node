@@ -1,7 +1,7 @@
 {
-  "name": "Test_10p",
+  "name": "test_10p",
   "version": "0.1.0",
-  "description": "Aptitudinal tes - Senior Developer Analyst",
+  "description": "Aptitudinal test - Senior Developer Analyst",
   "scripts": {
     "start": "babel-node server/app.js",
     "clean": "rimraf node_modules && rimraf dist && npm install",

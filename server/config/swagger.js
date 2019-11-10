@@ -6,7 +6,7 @@ import swaggerJSDoc from 'swagger-jsdoc';
  */
 const swaggerDefinition = {
   info: {
-    title: 'API Inpsect modules',
+    title: 'API',
     version: '0.1.0',
     description: 'RESTful API description with Swagger'
   },

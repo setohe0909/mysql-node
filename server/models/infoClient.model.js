@@ -1,6 +1,6 @@
-import bookshelf from "../config/bookshelf";
+import bookshelf from '../config/bookshelf';
 
-const TABLE_NAME = "infoClient";
+const TABLE_NAME = 'infoClient';
 
 /**
  * User model.

@@ -1,6 +1,5 @@
 import express from 'express';
-import * as userCtrl from '../controllers/user.controller';
-import isAuthenticated from '../middlewares/authenticate';
+import * as infoClientsCtrl from '../controllers/infoClient.controller';
 import validate from '../config/joi.validate';
 import schema from '../utils/validator';
 
@@ -9,42 +8,62 @@ const router = express.Router();
 /**
  * @swagger
  * tags:
- *   - name: user
- *     description: User operations
+ *   - name: client
+ *     description: Details data of each clients
  */
 
 /**
  * @swagger
  * definitions:
- *   User:
+ *   client:
  *     type: object
  *     properties:
- *       id:
+ *       nit:
  *         type: integer
- *         description: Unique identifier representing a specific user
- *         example: 2
- *       first_name:
+ *         description: Unique identifier representing a specific client
+ *         example: 109090222
+ *       full_name:
  *         type: string
- *         description: first name of the user
- *         example: Krishna
- *       last_name:
+ *         description: name completely of the client
+ *         example: sebastian company
+ *       address:
  *         type: string
- *         description: last name of the user
- *         example: Timilsina
- *       email:
+ *         description: address of the client
+ *         example: av 10 # 11 - 21
+ *       phone:
  *         type: string
- *         description: email of the user
+ *         description: phone of the client
  *         required: true
- *         example: test@gmail.com
- *       password:
+ *         example: +57 311 444 62 33
+ *       city:
  *         type: string
- *         description: password of the user
+ *         description: city of the client
  *         required: true
- *         example: "1234"
- *       status:
+ *         example: Medellin
+ *       state:
+ *         type: string
+ *         description: status of the client
+ *         example: Antioquia
+ *       country:
+ *         type: string
+ *         description: country of the client
+ *         example: Colombia
+ *       credit_limit:
  *         type: integer
- *         description: status of the user
- *         example: 1
+ *         description: credit limit of the client
+ *         example: $ 3.5564
+ *       available_credit:
+ *         type: integer
+ *         description: avaialble credit of the client
+ *         example: $ 10.5564
+ *       visit_percentage:
+ *         type: integer
+ *         description: visit percentage of the client
+ *         example: 30.3%
+ *       visits:
+ *         type: integer
+ *         description: visit of the client
+ *         example: 30.3%
  *       created_at:
  *         type: string
  *         format: date-time
@@ -90,14 +109,14 @@ router
 
   /**
    * @swagger
-   * /users:
+   * /client:
    *   post:
    *     tags:
-   *       - user
-   *     summary: "Create a new user"
+   *       - client
+   *     summary: "Create a new client"
    *     security:
    *        - Bearer: []
-   *     operationId: storeUser
+   *     operationId: storeClient
    *     consumes:
    *       - application/json
    *     produces:
@@ -105,32 +124,32 @@ router
    *     parameters:
    *       - name: body
    *         in: body
-   *         description: Created user object
+   *         description: Created client object
    *         required: true
    *         schema:
-   *           $ref: "#/definitions/User"
+   *           $ref: "#/definitions/client"
    *     responses:
    *       200:
    *         description: OK
    *         schema:
-   *           $ref: "#/definitions/User"
+   *           $ref: "#/definitions/client"
    *       403:
-   *          description: User not found
+   *          description: Client not found
    *          schema:
    *             $ref: '#/definitions/Error'
    */
 
-  .post(validate(schema.storeUser), (req, res) => {
-    userCtrl.store(req, res);
+  .post(validate(schema.storeClient), (req, res) => {
+    infoClientsCtrl.store(req, res);
   })
 
   /**
    * @swagger
-   * /users:
+   * /client:
    *   get:
    *     tags:
-   *       - user
-   *     summary: "List all users"
+   *       - client
+   *     summary: "List all client"
    *     operationId: findAll
    *     consumes:
    *       - application/json
@@ -145,7 +164,7 @@ router
    */
 
   .get((req, res) => {
-    userCtrl.findAll(req, res);
+    infoClientsCtrl.findAll(req, res);
   });
 
 router
@@ -153,11 +172,11 @@ router
 
   /**
    * @swagger
-   * /users/{id}:
+   * /client/{id}:
    *   get:
    *     tags:
-   *       - user
-   *     summary: Find the user by ID
+   *       - client
+   *     summary: Find the client by ID
    *     operationId: findById
    *     consumes:
    *       - application/json
@@ -166,31 +185,31 @@ router
    *     parameters:
    *       - name: id
    *         in: path
-   *         description: id of user that needs to be fetched
+   *         description: id of client that needs to be fetched
    *         required: true
    *         type: integer
    *     responses:
    *       200:
    *         description: OK
    *         schema:
-   *           $ref: "#/definitions/User"
+   *           $ref: "#/definitions/client"
    *       404:
-   *          description: User not found
+   *          description: client not found
    *          schema:
    *             $ref: '#/definitions/Error'
    */
 
   .get((req, res) => {
-    userCtrl.findById(req, res);
+    infoClientsCtrl.findById(req, res);
   })
 
   /**
    * @swagger
-   * /users/{id}:
+   * /client/{id}:
    *   put:
    *     tags:
-   *       - user
-   *     summary: "Update an existing user by ID"
+   *       - client
+   *     summary: "Update an existing client by ID"
    *     security:
    *       - Bearer: []
    *     operationId: update
@@ -206,30 +225,30 @@ router
    *         type: integer
    *       - name: body
    *         in: body
-   *         description: Updated user object
+   *         description: Updated client object
    *         required: true
    *         schema:
-   *           $ref: "#/definitions/User"
+   *           $ref: "#/definitions/client"
    *     responses:
    *       200:
    *         description: OK
    *         schema:
-   *           $ref: "#/definitions/User"
+   *           $ref: "#/definitions/client"
    *       400:
-   *         description: Invalid user
+   *         description: Invalid client
    */
 
-  .put(isAuthenticated, (req, res) => {
-    userCtrl.update(req, res);
+  .put((req, res) => {
+    infoClientsCtrl.update(req, res);
   })
 
   /**
    * @swagger
-   * /users/{id}:
+   * /client/{id}:
    *   delete:
    *     tags:
-   *       - user
-   *     summary: Delete the user by ID
+   *       - client
+   *     summary: Delete the client by ID
    *     security:
    *       - Bearer: []
    *     operationId: destroy
@@ -238,7 +257,7 @@ router
    *     parameters:
    *       - name: id
    *         in: path
-   *         description: id of user that needs to be deleted
+   *         description: id of client that needs to be deleted
    *         required: true
    *         type: integer
    *     responses:
@@ -248,8 +267,8 @@ router
    *          description: "Invalid ID"
    */
 
-  .delete(isAuthenticated, (req, res) => {
-    userCtrl.destroy(req, res);
+  .delete((req, res) => {
+    infoClientsCtrl.destroy(req, res);
   });
 
 export default router;

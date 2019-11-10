@@ -2,24 +2,24 @@
 
 - Create new migrations:
  ```
- $ knex migrate:make <migration>
- $ npm migrate:make <migration>
+  $ knex migrate:make <migration>
+  $ npm run migrate:make <migration>
  ```
 
 - Rollback migration
   ```
-  $ migrate:rollback"
+  $ npm run migrate:rollback"
   ```
 
 - Run migrations
  ```
- $ npm run migrate
+  $ npm run migrate
  ```
 
 Run project:
  ```
- $ npm run build (For development)
- $ npm run build:prod (For production)
+  $ npm run build (For development)
+  $ npm run build:prod (For production)
 ```
 
 List of NPM Commands:
