@@ -9,15 +9,16 @@ import Avatar from '@material-ui/core/Avatar';
 import HomeIcon from '@material-ui/icons/Home';
 import PersonIcon from '@material-ui/icons/Person';
 import ContactMailIcon from '@material-ui/icons/ContactMail';
+import { Link } from 'react-router-dom';
 
 const drawerWidth = 250;
 
 const styles = (theme) => ({
   drawerContainer: {
-    background:'#373758'
+    background: '#373758'
   },
   drawerPaper: {
-    background:'#373758',
+    background: '#373758',
     color: '#73738b',
     position: 'relative',
     height: 'auto',
@@ -75,19 +76,19 @@ const MiniDrawer = (props) => {
         <Avatar alt="User" src="/img/avatar5.jpg" className={classNames(classes.avatar, classes.bigAvatar)} />
       </div>
       <List>
-        <ListItem button>
+        <ListItem button component={Link} to="/dashboard">
           <ListItemIcon>
             <HomeIcon />
           </ListItemIcon>
           <ListItemText primary="Dashboard" />
         </ListItem>
-        <ListItem button>
+        <ListItem button component={Link} to="/users">
           <ListItemIcon>
             <PersonIcon />
           </ListItemIcon>
           <ListItemText primary="Users" />
         </ListItem>
-        <ListItem button>
+        <ListItem button component={Link} to="/clients">
           <ListItemIcon>
             <ContactMailIcon />
           </ListItemIcon>
