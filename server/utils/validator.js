@@ -41,6 +41,7 @@ export default {
 
   storeClient: {
     body: {
+      nit: Joi.number().required(),
       full_name: Joi.string().required(),
       address: Joi.string().required(),
       phone: Joi.string().required(),

@@ -51,19 +51,19 @@ const router = express.Router();
  *       credit_limit:
  *         type: integer
  *         description: credit limit of the client
- *         example: $ 3.5564
+ *         example: 35564
  *       available_credit:
  *         type: integer
  *         description: avaialble credit of the client
- *         example: $ 10.5564
+ *         example: 105564
  *       visit_percentage:
  *         type: integer
  *         description: visit percentage of the client
- *         example: 30.3%
+ *         example: 30
  *       visits:
  *         type: integer
  *         description: visit of the client
- *         example: 30.3%
+ *         example: 30
  *       created_at:
  *         type: string
  *         format: date-time

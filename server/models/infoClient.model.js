@@ -1,11 +1,11 @@
 import bookshelf from '../config/bookshelf';
 
-const TABLE_NAME = 'infoClient';
+const TABLE_NAME = 'infoClients';
 
 /**
- * User model.
+ * infoClient model.
  */
-class User extends bookshelf.Model {
+class infoClient extends bookshelf.Model {
   /**
    * Get table name.
    */
@@ -21,4 +21,4 @@ class User extends bookshelf.Model {
   }
 }
 
-export default User;
+export default infoClient;

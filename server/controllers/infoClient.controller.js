@@ -1,20 +1,21 @@
 import HttpStatus from 'http-status-codes';
-import User from '../models/user.model';
+import infoClient from '../models/infoClient.model';
 
 /**
- * Find all the users
+ * Find all the client
  *
  * @param {object} req
  * @param {object} res
  * @returns {*}
  */
 export function findAll(req, res) {
-  User.forge()
+  infoClient
+    .forge()
     .fetchAll()
-    .then((user) =>
+    .then((client) =>
       res.json({
         error: false,
-        data: user.toJSON()
+        data: client.toJSON()
       })
     )
     .catch((err) =>
@@ -25,17 +26,18 @@ export function findAll(req, res) {
 }
 
 /**
- *  Find user by id
+ *  Find user by client
  *
  * @param {object} req
  * @param {object} res
  * @returns {*}
  */
 export function findById(req, res) {
-  User.forge({ id: req.params.id })
+  infoClient
+    .forge({ nit: req.params.nit })
     .fetch()
-    .then((user) => {
-      if (!user) {
+    .then((client) => {
+      if (!client) {
         res.status(HttpStatus.NOT_FOUND).json({
           error: true,
           data: {}
@@ -43,7 +45,7 @@ export function findById(req, res) {
       } else {
         res.json({
           error: false,
-          data: user.toJSON()
+          data: client.toJSON()
         });
       }
     })
@@ -55,28 +57,49 @@ export function findById(req, res) {
 }
 
 /**
- * Store new user
+ * Store new client
  *
  * @param {object} req
  * @param {object} res
  * @returns {*}
  */
 export function store(req, res) {
-  const { first_name, last_name, email } = req.body;
+  const {
+    nit,
+    full_name,
+    address,
+    phone,
+    city,
+    state,
+    country,
+    credit_limit,
+    available_credit,
+    visit_percentage,
+    visits
+  } = req.body;
 
-  User.forge(
-    {
-      first_name,
-      last_name,
-      email
-    },
-    { hasTimestamps: true }
-  )
+  infoClient
+    .forge(
+      {
+        nit,
+        full_name,
+        address,
+        phone,
+        city,
+        state,
+        country,
+        credit_limit,
+        available_credit,
+        visit_percentage,
+        visits
+      },
+      { hasTimestamps: true }
+    )
     .save()
-    .then((user) =>
+    .then((infoClient) =>
       res.json({
         success: true,
-        data: user.toJSON()
+        data: infoClient.toJSON()
       })
     )
     .catch((err) =>
@@ -87,26 +110,27 @@ export function store(req, res) {
 }
 
 /**
- * Update user by id
+ * Update client by id
  *
  * @param {object} req
  * @param {object} res
  * @returns {*}
  */
 export function update(req, res) {
-  User.forge({ id: req.params.id })
+  infoClient
+    .forge({ nit: req.params.nit })
     .fetch({ require: true })
-    .then((user) =>
-      user
+    .then((client) =>
+      client
         .save({
-          first_name: req.body.first_name || user.get('first_name'),
-          last_name: req.body.last_name || user.get('last_name'),
-          email: req.body.email || user.get('email')
+          first_name: req.body.first_name || client.get('first_name'),
+          last_name: req.body.last_name || client.get('last_name'),
+          email: req.body.email || client.get('email')
         })
         .then(() =>
           res.json({
             error: false,
-            data: user.toJSON()
+            data: client.toJSON()
           })
         )
         .catch((err) =>
@@ -124,17 +148,18 @@ export function update(req, res) {
 }
 
 /**
- * Destroy user by id
+ * Destroy client by id
  *
  * @param {object} req
  * @param {object} res
  * @returns {*}
  */
 export function destroy(req, res) {
-  User.forge({ id: req.params.id })
+  infoClient
+    .forge({ nit: req.params.nit })
     .fetch({ require: true })
-    .then((user) =>
-      user
+    .then((client) =>
+      client
         .destroy()
         .then(() =>
           res.json({

@@ -12,6 +12,6 @@ router.use('/auth', authRoutes);
 router.use('/users', userRoutes);
 
 // mount clients routes at /clients
-router.use('/clients', infoClientsRoutes);
+router.use('/client', infoClientsRoutes);
 
 export default router;

@@ -17,7 +17,7 @@
     "space-infix-ops": 2,
     "newline-before-return": 2,
     "linebreak-style": [2, "unix"],
-    "camelcase": [2, {"properties": "never"}],
+    "camelcase": 0,
     "quotes": [2, "single", {"allowTemplateLiterals": true}],
     "react/jsx-uses-react": "error",
     "react/jsx-uses-vars": "error",
