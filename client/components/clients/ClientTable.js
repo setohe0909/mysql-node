@@ -6,6 +6,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Checkbox from '@material-ui/core/Checkbox';
 
 const useStyles = makeStyles({
   root: {
@@ -29,7 +30,7 @@ const rows = [
   createData('Gingerbread', 356, 16.0, 49, 3.9)
 ];
 
-export default function SimpleTable() {
+export default function SimpleTable(props) {
   const classes = useStyles();
 
   return (
@@ -38,23 +39,31 @@ export default function SimpleTable() {
         <Table className={classes.table} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell>Dessert (100g serving)</TableCell>
-              <TableCell align="right">Calories</TableCell>
-              <TableCell align="right">Fat&nbsp;(g)</TableCell>
-              <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-              <TableCell align="right">Protein&nbsp;(g)</TableCell>
+              <TableCell>Select</TableCell>
+              <TableCell>NIT</TableCell>
+              <TableCell align="right">Full Name</TableCell>
+              <TableCell align="right">Country</TableCell>
+              <TableCell align="right">Credit Limit</TableCell>
+              <TableCell align="right">Available Credit</TableCell>
+              <TableCell align="right">Visit Percentage</TableCell>
+              <TableCell align="right">Visit</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
-              <TableRow key={row.name}>
-                <TableCell component="th" scope="row">
-                  {row.name}
+            {props.rows.map((row, index) => (
+              <TableRow key={index}>
+                <TableCell align="left">
+                  <Checkbox />
                 </TableCell>
-                <TableCell align="right">{row.calories}</TableCell>
-                <TableCell align="right">{row.fat}</TableCell>
-                <TableCell align="right">{row.carbs}</TableCell>
-                <TableCell align="right">{row.protein}</TableCell>
+                <TableCell component="th" scope="row">
+                  {row.nit}
+                </TableCell>
+                <TableCell align="right">{row.full_name}</TableCell>
+                <TableCell align="right">{row.country}</TableCell>
+                <TableCell align="right">{row.credit_limit}</TableCell>
+                <TableCell align="right">{row.available_credit}</TableCell>
+                <TableCell align="right">{row.visit_percentage}%</TableCell>
+                <TableCell align="right">{row.visits}</TableCell>
               </TableRow>
             ))}
           </TableBody>

@@ -4,12 +4,14 @@ import { reducer as formReducer } from 'redux-form';
 
 // Import custom components
 import authReducer from './authReducer';
+import crudReducer from './crudReducer';
 
 const appReducer = (history) =>
   combineReducers({
     router: connectRouter(history),
     form: formReducer, // ← redux-form
-    auth: authReducer
+    auth: authReducer,
+    crud: crudReducer
   });
 
 const rootReducer = (state, action) => {

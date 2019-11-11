@@ -30,6 +30,10 @@ class ClientContainer extends Component {
     this.submitForm = this.submitForm.bind(this);
   }
 
+  componentDidMount() {
+    this.props.actions.fetchAll(CLIENTS);
+  }
+
   submitForm(formProps) {
     this.props.actions.submitForm(CLIENTS, formProps);
   }
@@ -41,7 +45,7 @@ class ClientContainer extends Component {
 
   render() {
     const { btnText, newOne } = this.state;
-    const { classes } = this.props;
+    const { classes, clients } = this.props;
 
     return (
       <>
@@ -51,7 +55,7 @@ class ClientContainer extends Component {
               {btnText} ➕
             </Button>
             <Divider className={classes.spacingDivider} />
-            <ClientTable />
+            {clients && <ClientTable rows={clients.data} />}
           </div>
         ) : (
           <div>
@@ -70,11 +74,15 @@ class ClientContainer extends Component {
 /**
  * Map the actions to props.
  */
+const mapStateToProps = (state) => ({
+  clients: state.crud.client
+});
+
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(Object.assign({}, crudAction), dispatch)
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(withStyles(styles)(ClientContainer));

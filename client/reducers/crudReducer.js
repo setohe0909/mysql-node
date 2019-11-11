@@ -19,34 +19,34 @@ let initialState = {
  */
 export default function(state, action) {
   state = state || initialState;
-  let newState;
+  let newState = {};
 
   switch (action.type) {
     case ENTITY_CREATE:
       newState[action.entity] = Object.assign({}, state, action.data);
-      return newState;
 
+      return newState;
     case ENTITY_UPDATE:
       newState[action.entity] = Object.assign({}, state, action.data);
-      return newState;
 
+      return newState;
     case ENTITY_FETCH:
       newState[action.entity] = Object.assign({}, state, action.data);
-      return newState;
 
+      return newState;
     case ENTITY_DELETE:
       const data = Object.assign({}, state);
       newState[action.entity] = data.filter((data) => data.id !== action.data.id);
-      return newState;
 
+      return newState;
     case SELECT_ENTITY_ITEM:
       newState.selectedItem[action.entity] = Object.assign({}, state, action.data);
-      return newState;
 
+      return newState;
     case CLEAR_ENTITY_LIST:
       newState[action.entity] = {};
-      return newState;
 
+      return newState;
     default:
       return state;
   }
