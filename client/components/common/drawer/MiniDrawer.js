@@ -15,7 +15,8 @@ const drawerWidth = 250;
 
 const styles = (theme) => ({
   drawerContainer: {
-    background: '#373758'
+    background: '#373758',
+    height: '100vh'
   },
   drawerPaper: {
     background: '#373758',
