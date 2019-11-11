@@ -1,5 +1,6 @@
 import express from 'express';
 import * as infoClientsCtrl from '../controllers/infoClient.controller';
+import isAuthenticated from '../middlewares/authenticate';
 import validate from '../config/joi.validate';
 import schema from '../utils/validator';
 
@@ -238,7 +239,7 @@ router
    *         description: Invalid client
    */
 
-  .put((req, res) => {
+  .put(isAuthenticated, (req, res) => {
     infoClientsCtrl.update(req, res);
   })
 
@@ -267,7 +268,7 @@ router
    *          description: "Invalid ID"
    */
 
-  .delete((req, res) => {
+  .delete(isAuthenticated, (req, res) => {
     infoClientsCtrl.destroy(req, res);
   });
 

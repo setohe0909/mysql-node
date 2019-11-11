@@ -26,7 +26,7 @@ export function findAll(req, res) {
 }
 
 /**
- *  Find user by client
+ *  Find client by nit
  *
  * @param {object} req
  * @param {object} res
@@ -156,7 +156,7 @@ export function update(req, res) {
  */
 export function destroy(req, res) {
   infoClient
-    .forge({ nit: req.params.nit })
+    .forge({ nit: req.params.id })
     .fetch({ require: true })
     .then((client) =>
       client
@@ -164,7 +164,7 @@ export function destroy(req, res) {
         .then(() =>
           res.json({
             error: false,
-            data: { message: 'User deleted successfully.' }
+            data: { message: 'Client deleted successfully.' }
           })
         )
         .catch((err) =>

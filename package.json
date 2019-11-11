@@ -4,6 +4,7 @@
   "description": "Aptitudinal test - Senior Developer Analyst",
   "scripts": {
     "start": "babel-node server/app.js",
+    "inspect": "DEBUG=express:*,app:* nodemon --inspect index",
     "clean": "rimraf node_modules && rimraf dist && npm install",
     "webpack:dev": "cross-env NODE_ENV=development webpack --config ./webpack/webpack.config.dev.js",
     "webpack:prod": "cross-env NODE_ENV=production webpack --config ./webpack/webpack.config.prod.js",
@@ -63,6 +64,7 @@
     "@babel/preset-react": "^7.6.3",
     "@babel/register": "^7.6.2",
     "@hot-loader/react-dom": "^16.10.2",
+    "@types/node": "^12.12.7",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
     "cross-env": "^5.2.1",
