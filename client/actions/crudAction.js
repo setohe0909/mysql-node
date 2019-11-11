@@ -6,7 +6,7 @@ import * as httpService from '../services/httpService';
  * CRUD actions for the application.
  * Every time an action that requires the API is called, it first dispatch an "apiRequest" action.
  *
- * entity = 'Product', 'Employee', ...
+ * entity = 'users', 'clients', etc...
  */
 
 export const fetchAll = (entity) => {
