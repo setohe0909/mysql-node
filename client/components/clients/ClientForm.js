@@ -91,7 +91,7 @@ const ClientForm = (props) => {
   );
 };
 
-const validateSignUp = (values) => {
+const validateForm = (values) => {
   const errors = {};
 
   const requiredFields = [
@@ -123,5 +123,5 @@ ClientForm.propTypes = {
 
 export default reduxForm({
   form: 'ClientForm', // a unique identifier for this form
-  validate: validateSignUp // ←Callback function for client-side validation
+  validate: validateForm // ←Callback function for client-side validation
 })(withStyles(styles)(ClientForm));

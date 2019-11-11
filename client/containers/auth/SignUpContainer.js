@@ -15,11 +15,6 @@ class SignUpContainer extends Component {
     this.submitForm = this.submitForm.bind(this);
   }
 
-  /**
-   * Submit the form.
-   *
-   * @param {object} formProps
-   */
   submitForm(formProps) {
     this.props.actions.submitForm(USERS, formProps);
   }

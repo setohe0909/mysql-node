@@ -1,13 +1,5 @@
 import history from '../utils/history';
-
-/**
- * Import all commonAction as an object.
- */
 import * as commonAction from './commonAction';
-
-/**
- * Import all httpService as an object.
- */
 import * as httpService from '../services/httpService';
 
 /**
