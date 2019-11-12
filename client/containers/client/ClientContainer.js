@@ -43,6 +43,11 @@ class ClientContainer extends Component {
     this.setState({ newOne, btnText });
   };
 
+  removeRow = (e, nit) => {
+    e.preventDefault();
+    this.props.actions.destroyItem(CLIENTS, nit);
+  };
+
   render() {
     const { btnText, newOne } = this.state;
     const { classes, clients } = this.props;
@@ -55,7 +60,7 @@ class ClientContainer extends Component {
               {btnText} ➕
             </Button>
             <Divider className={classes.spacingDivider} />
-            {clients && <ClientTable rows={clients.data} />}
+            {clients && <ClientTable rows={clients.data} removeRow={this.removeRow} />}
           </div>
         ) : (
           <div>
@@ -82,7 +87,4 @@ const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(Object.assign({}, crudAction), dispatch)
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withStyles(styles)(ClientContainer));
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(ClientContainer));

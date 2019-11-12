@@ -1,7 +1,7 @@
 import React from 'react';
-import { cyan, pink, purple, orange } from '@material-ui/core/colors';
+import { pink, orange } from '@material-ui/core/colors';
 import { Grid } from '@material-ui/core';
-import { AddShoppingCart, ThumbUp, Assessment, Face } from '@material-ui/icons';
+import { Business, Face } from '@material-ui/icons';
 
 import SummaryBox from './SummaryBox';
 import Product from './Product';
@@ -22,19 +22,11 @@ const Dashboard = () => {
 
       <Grid container spacing={4} style={{ marginBottom: '15px' }}>
         <Grid item lg={3} sm={6} xl={3} xs={12}>
-          <SummaryBox Icon={AddShoppingCart} color={pink[600]} title="Total Profit" value="1500k" />
+          <SummaryBox Icon={Business} color={pink[600]} title="Total Clients" value="1500k" />
         </Grid>
 
         <Grid item lg={3} sm={6} xl={3} xs={12}>
-          <SummaryBox Icon={ThumbUp} color={cyan[600]} title="Likes" value="4231" />
-        </Grid>
-
-        <Grid item lg={3} sm={6} xl={3} xs={12}>
-          <SummaryBox Icon={Assessment} color={purple[600]} title="Sales" value="460" />
-        </Grid>
-
-        <Grid item lg={3} sm={6} xl={3} xs={12}>
-          <SummaryBox Icon={Face} color={orange[600]} title="New Members" value="248" />
+          <SummaryBox Icon={Face} color={orange[600]} title="Total users" value="248" />
         </Grid>
       </Grid>
 
