@@ -12,15 +12,10 @@ import User from '../models/user.model';
  */
 
 export default (req, res, next) => {
-  const authorizationHeader = req.headers['authorization'];
-  let token;
+  const authorizationHeader = req.headers['x-xsrf-token'];
 
   if (authorizationHeader) {
-    token = authorizationHeader;
-  }
-
-  if (token) {
-    jwt.verify(token, process.env.TOKEN_SECRET_KEY, (err, decoded) => {
+    jwt.verify(authorizationHeader, process.env.TOKEN_SECRET_KEY, (err, decoded) => {
       if (err) {
         res.status(HttpStatus.UNAUTHORIZED).json({ error: 'You are not authorized to perform this operation!' });
       } else {

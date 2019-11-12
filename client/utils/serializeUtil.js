@@ -8,6 +8,7 @@ export function getQueryParam(data) {
       str.push(encodeURIComponent(p) + '=' + encodeURIComponent(data[p]));
     }
   }
+
   return '?' + str.join('&');
 }
 
@@ -17,5 +18,6 @@ export function getPathParam(...args) {
   for (var a in args) {
     params.push(args[a]);
   }
+
   return params.join('/');
 }

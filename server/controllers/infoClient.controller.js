@@ -160,6 +160,7 @@ export function destroy(req, res) {
     .fetch({ require: true })
     .then((client) =>
       client
+        .where('nit', req.params.id)
         .destroy()
         .then(() =>
           res.json({

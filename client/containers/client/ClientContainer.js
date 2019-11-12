@@ -45,7 +45,7 @@ class ClientContainer extends Component {
 
   removeRow = (e, nit) => {
     e.preventDefault();
-    this.props.actions.destroyItem(CLIENTS, nit);
+    this.props.actions.destroyItem(CLIENTS, nit, { algo: 'aaa' });
   };
 
   render() {
@@ -80,7 +80,8 @@ class ClientContainer extends Component {
  * Map the actions to props.
  */
 const mapStateToProps = (state) => ({
-  clients: state.crud.client
+  clients: state.crud.client,
+  token: state.auth.token
 });
 
 const mapDispatchToProps = (dispatch) => ({
