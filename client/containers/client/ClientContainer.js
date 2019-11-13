@@ -48,6 +48,10 @@ class ClientContainer extends Component {
     this.props.actions.destroyItem(CLIENTS, nit, { algo: 'aaa' });
   };
 
+  editRow = (e, nit) => {
+    e.preventDefault();
+  };
+
   render() {
     const { btnText, newOne } = this.state;
     const { classes, clients } = this.props;
@@ -60,7 +64,7 @@ class ClientContainer extends Component {
               {btnText} ➕
             </Button>
             <Divider className={classes.spacingDivider} />
-            {clients && <ClientTable rows={clients.data} removeRow={this.removeRow} />}
+            {clients && <ClientTable rows={clients.data} editRow={this.editRow} removeRow={this.removeRow} />}
           </div>
         ) : (
           <div>
@@ -80,8 +84,7 @@ class ClientContainer extends Component {
  * Map the actions to props.
  */
 const mapStateToProps = (state) => ({
-  clients: state.crud.client,
-  token: state.auth.token
+  clients: state.crud.client
 });
 
 const mapDispatchToProps = (dispatch) => ({

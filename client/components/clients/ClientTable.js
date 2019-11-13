@@ -8,6 +8,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Checkbox from '@material-ui/core/Checkbox';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import EditIcon from '@material-ui/icons/Edit';
 
 const useStyles = makeStyles({
   root: {
@@ -28,6 +29,7 @@ export default function SimpleTable(props) {
         <Table className={classes.table} aria-label="simple table">
           <TableHead>
             <TableRow>
+              <TableCell>Actions</TableCell>
               <TableCell></TableCell>
               <TableCell></TableCell>
               <TableCell align="right">NIT</TableCell>
@@ -42,6 +44,9 @@ export default function SimpleTable(props) {
           <TableBody>
             {props.rows.map((row, index) => (
               <TableRow key={index}>
+                <TableCell>
+                  <EditIcon onClick={(e) => props.editRow(e, row.nit)} />
+                </TableCell>
                 <TableCell align="left">
                   <DeleteForeverIcon onClick={(e) => props.removeRow(e, row.nit)} />
                 </TableCell>
